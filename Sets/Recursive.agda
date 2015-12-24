@@ -33,8 +33,9 @@ data ℕ₂ : Set where
 --   Storing the number? ℕ₂ (uses less space)?
 
 data ℤ : Set where
-  negate : ℕ → ℤ
-  id : ℕ → ℤ
+  negate : ℕ⁺ → ℤ
+  id : ℕ⁺ → ℤ
+  zero : ℤ
 
 -- binary tree without data
 data BinTree₀ : Set where
