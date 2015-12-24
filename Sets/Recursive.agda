@@ -35,3 +35,33 @@ data ℕ₂ : Set where
 data ℤ : Set where
   negate : ℕ → ℤ
   id : ℕ → ℤ
+
+-- binary tree without data
+data BinTree₀ : Set where
+  leaf : BinTree₀
+  node : BinTree₀ → BinTree₀ → BinTree₀
+
+-- binary tree with data at the leaves
+data BinTree₁ : Set where
+  leaf : ℕ → BinTree₁
+  node : BinTree₁ → BinTree₁ → BinTree₁
+
+-- binary tree with data at the nodes
+data BinTree₂ : Set where
+  leaf : BinTree₂
+  node : ℕ → BinTree₂ → BinTree₂ → BinTree₂
+
+-- with booleans in the nodes and nats in the leaves
+data BinTree₃ : Set where
+  leaf : ℕ → BinTree₃
+  node : Bool → BinTree₃ → BinTree₃ → BinTree₃
+
+-- lists of natural numbers
+data NatList : Set where
+  _::_ : ℕ → NatList → NatList
+  nil : NatList
+
+-- non-empty lists of natural numbers
+data SomeNats : Set where
+  _::_ : ℕ → SomeNats → SomeNats
+  last : ℕ → SomeNats
