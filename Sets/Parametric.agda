@@ -45,11 +45,11 @@ data Top : Set where
 
 -- Disjoint Union (Sum)
 
-data _⨄_ (A B : Set) : Set where
-  inj₁ : A → A ⨄ B
-  inj₂ : B → A ⨄ B
+data _⊎_ (A B : Set) : Set where
+  inj₁ : A → A ⊎ B
+  inj₂ : B → A ⊎ B
 
-infixr 1 _⨄_
+infixr 1 _⊎_
 
 -- Exercise: What are the elements of Bool ⊎ ⊤?
 -- inj₁ true; inj₁ false; inj₂ tt
@@ -64,7 +64,7 @@ infixr 1 _⨄_
 data Bottom : Set where
 
 -- Exercise: Give an isomorphic definition of Maybe A with the help of _⊎_ and ⊤!
--- A ⨄ ⊤
+-- A ⊎ ⊤
 
 -- Mutually-recursive sets
 
