@@ -79,7 +79,40 @@ from (id (double+1 n)) = 1 + (2 * (from (id n)))
 
 -- Exercise: Define ℤ and some operations on it (_+_, _-_, _*_)
 
--- TODO
+open import Sets.Recursive using (ℤ; negate; zero; id)
+
+-- ℕ⁺-suc : ℕ⁺ → ℕ⁺
+-- ℕ⁺-suc one = double one
+-- ℕ⁺-suc (double x) = double+1 x
+-- ℕ⁺-suc (double+1 x) = double (ℕ⁺-suc x)
+--
+-- to : ℕ → ℕ₂
+-- to zero = zero
+-- to (suc zero) = id one
+-- -- to (suc (suc zero)) = id (double one)
+-- to n with even n | to ⌊ n /2⌋
+-- ... | true  | zero    = zero
+-- ... | true  | id quot = id (double quot)
+-- ... | false | zero    = id one
+-- ... | false | id quot = id (double+1 quot)
+
+-- inj-ℕ₂ : ℕ₂ → ℤ
+--
+-- _ℤ+_ : ℤ → ℤ → ℤ
+-- zero ℤ+ x = x
+-- x ℤ+ zero = x
+-- (negate x⁺) ℤ+ (negate y⁺) = negate (_ (to ((from (id x⁺)) + (from (id y⁺)))))
+
+-- NOTE: i think this is harder than the tutorial author anticipates.
+
+-- _ℕ⁺+_ : ℕ⁺ → ℕ⁺ → ℕ⁺
+--
+-- _ℤ+_ : ℤ → ℤ → ℤ
+-- zero ℤ+ x = x
+-- x ℤ+ zero = x
+-- (negate x⁺) ℤ+ (negate y⁺) = negate (x⁺ ℕ⁺+ y⁺)
+-- (id x⁺) ℤ+ (id y⁺) = id (x⁺ ℕ⁺+ y⁺)
+-- (negate x⁺) ℤ+ (id y⁺) = negate (y⁺ ℕ⁺- x⁺)
 
 data BinTree : Set where
   leaf : BinTree
@@ -87,4 +120,6 @@ data BinTree : Set where
 
 -- Exercise: define (recursive) mirroring of binary trees
 
--- TODO
+mirror : BinTree → BinTree
+mirror leaf = leaf
+mirror (node left right) = node (mirror right) (mirror left)
